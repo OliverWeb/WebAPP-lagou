@@ -61,7 +61,8 @@ angular.module('app').config(['$validationProvider',function($validationProvider
 	var expression={
 		phone: /^1[\d]{10}/,
 		password:function(value){
-			return value >5;
+			var str=value+'';
+			return str.length> 5;
 		}
 	};
 	var defaultMsg={
@@ -150,9 +151,27 @@ angular.module('app').controller('postCtrl', ['$http', '$scope', function($http,
 		}]
 }]);
 'use strict';
-angular.module('app').controller('registerCtrl', ['$http', '$scope', function($http, $scope){
+angular.module('app').controller('registerCtrl', ['$interval','$http', '$scope', function($interval,$http, $scope){
 		$scope.submit=function(){
 			console.log($scope.user);
+		};
+		var count=60;
+		$scope.send=function(){
+			$http.get('data/code.json').success(function(resp){
+				if(resp.state===1){
+					count=60;
+					$scope.time='60';
+					var interval=$interval(function(){
+						if(count<=0){
+							$interval.cancel(interval);
+							$scope.time='';
+						}else{
+							count--;
+							$scope.time=count+'s';
+						}
+					},1000)
+				}
+			})
 		}
 }]);
 "use strict";

@@ -5,7 +5,8 @@ angular.module('app').config(['$validationProvider',function($validationProvider
 	var expression={
 		phone: /^1[\d]{10}/,
 		password:function(value){
-			return value >5;
+			var str=value+'';
+			return str.length> 5;
 		}
 	};
 	var defaultMsg={

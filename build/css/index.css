@@ -470,6 +470,10 @@
   margin-top: 10px;
   border-radius: 5px;
 }
+.register form .message-wrap .message.disabled {
+  color: #d4d4d4;
+  border-color: #d4d4d4;
+}
 .register form button {
   width: 8rem;
   height: 0.93333333rem;

@@ -9,6 +9,20 @@
   bottom: 0;
   form{
     .mt(260);
+    .ng-invalid{
+      &+span{
+        background-color: transparent;
+        font-size:14px;
+        color:@dangerBgColor;
+        position: absolute;
+        right: 0;
+        height: 100%;
+        text-align: right;
+        p{
+          margin: 0;
+        }
+      }
+    }
     .form-inline{
       box-sizing:content-box; 
       margin-left: auto;
@@ -22,7 +36,7 @@
       &:first-child{
         border-bottom: 1px solid @defalutColor;
       }
-      span{
+      span.icon{
         width: 55px;
         height:100%;
       }

@@ -182,7 +182,11 @@ batarang(调试插件)
     一些表单常用的校验规则;
     /^1[\d]{10}/
     同意挂在一个上面,传数据也非常方便
-  
+    
+    required:function(value){
+    			return !!value;
+    		}
+    校验:这里的值不能为空;
 
 	
 	

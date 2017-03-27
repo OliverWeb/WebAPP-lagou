@@ -3,10 +3,13 @@ angular.module('app').config(['$validationProvider',function($validationProvider
 	/* provider,对模块和服务进行配置*/
 	/*进行校验规则的的配置*/
 	var expression={
-		phone: /^1[\d]{10}/,
+		phone: /^1[\d]{10}$/,
 		password:function(value){
 			var str=value+'';
 			return str.length> 5;
+		},
+		required:function(value){
+			return !!value;
 		}
 	};
 	var defaultMsg={
@@ -17,6 +20,10 @@ angular.module('app').config(['$validationProvider',function($validationProvider
 		password:{
 			success:'',
 			error:'长度至少6位'
+		},
+		required:{
+			success:'',
+			error:'不能为空'
 		}
 	};
 	$validationProvider.setExpression(expression).setDefaultMsg(defaultMsg);

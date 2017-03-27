@@ -1,7 +1,9 @@
 'use strict';
-angular.module('app').controller('registerCtrl', ['$interval','$http', '$scope', function($interval,$http, $scope){
+angular.module('app').controller('registerCtrl', ['$interval','$http', '$scope','$state', function($interval,$http, $scope,$state){
 		$scope.submit=function(){
-			console.log($scope.user);
+			$http.post('data/regist.json',$scope.user).success(function(resp){
+			$state.go('login');
+			})
 		};
 		var count=60;
 		$scope.send=function(){

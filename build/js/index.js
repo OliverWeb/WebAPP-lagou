@@ -14,6 +14,29 @@ angular.module('app').value('dict',{}).run(['dict','$http',function(dict,$http){
 		});
 }]);
 "use strict";
+angular.module('app').config(['$provide',function($provide){
+	$provide.decorator('$http',['$delegate','$q',function($delegate,$q){
+		var get= $delegate.get;
+		$delegate.post=function(url,data,config){
+			var def=$q.defer();
+			get(url).success(function(resp){
+				def.resolve(resp);
+			}).error(function(err){
+				def.reject(err);
+			});
+			return{
+				success:function(cb){
+					def.promise.then(cb)
+				},
+				error:function(cb){
+					def.promise.then(null,cb);
+				}
+			}
+		};
+		return $delegate;
+	}])
+}]);
+"use strict";
 angular.module('app').config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
 		$stateProvider.state('main',{
 			url:"/main",
@@ -59,10 +82,13 @@ angular.module('app').config(['$validationProvider',function($validationProvider
 	/* provider,对模块和服务进行配置*/
 	/*进行校验规则的的配置*/
 	var expression={
-		phone: /^1[\d]{10}/,
+		phone: /^1[\d]{10}$/,
 		password:function(value){
 			var str=value+'';
 			return str.length> 5;
+		},
+		required:function(value){
+			return !!value;
 		}
 	};
 	var defaultMsg={
@@ -73,6 +99,10 @@ angular.module('app').config(['$validationProvider',function($validationProvider
 		password:{
 			success:'',
 			error:'长度至少6位'
+		},
+		required:{
+			success:'',
+			error:'不能为空'
 		}
 	};
 	$validationProvider.setExpression(expression).setDefaultMsg(defaultMsg);
@@ -93,8 +123,17 @@ angular.module('app').controller('companyCtrl',['$http','$state','$scope',functi
 angular.module('app').controller('favoriteCtrl', ['$http', '$scope', function($http, $scope){
 }]);
 'use strict';
-angular.module('app').controller('loginCtrl', ['$http', '$scope', function($http, $scope){
+angular.module('app').controller('loginCtrl', ['cache','$state','$http', '$scope', function(cache,$state,$http, $scope){
+		console.log($scope.user);
+		$scope.submit=function(){
+			$http.post('data/login.json',$scope.user).success(function(resp){
+				cache.put('id',resp.id);
+				cache.put('name',resp.name);
+				cache.put('image',resp.image);
+				$state.go('main');
 
+			})
+		}
 }]);
 'use strict';
 angular.module('app').controller('mainCtrl', ['$http', '$scope', function($http, $scope){
@@ -151,9 +190,11 @@ angular.module('app').controller('postCtrl', ['$http', '$scope', function($http,
 		}]
 }]);
 'use strict';
-angular.module('app').controller('registerCtrl', ['$interval','$http', '$scope', function($interval,$http, $scope){
+angular.module('app').controller('registerCtrl', ['$interval','$http', '$scope','$state', function($interval,$http, $scope,$state){
 		$scope.submit=function(){
-			console.log($scope.user);
+			$http.post('data/regist.json',$scope.user).success(function(resp){
+			$state.go('login');
+			})
 		};
 		var count=60;
 		$scope.send=function(){

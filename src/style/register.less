@@ -9,6 +9,20 @@
   bottom: 0;
   form{
     .mt(55px);
+    .ng-invalid{
+      &+span{
+        background-color: transparent;
+        font-size:14px;
+        color:@dangerBgColor;
+        position: absolute;
+        right: 0;
+        height: 100%;
+        text-align: right;
+        p{
+          margin: 0;
+        }
+      }
+    }
     .form-inline{
       box-sizing:content-box; 
       margin-left: auto;
@@ -46,20 +60,6 @@
         &::-webkit-input-placeholder{
           color: @defalutColor;
         }
-        &.ng-invalid{
-          &+span{
-            background-color: transparent;
-            font-size:14px;
-            color:@dangerBgColor;
-            position: absolute;
-            right: 0;
-            height: 100%;
-            text-align: right;
-            p{
-              margin: 0;
-            }
-          }
-        }
       }
     }
     .message-wrap{
@@ -72,6 +72,7 @@
         background-color: @formBgColor;
         outline-width: 0;
         box-sizing: border-box;
+        color: @defalutColor;
         .w(190);
         .h(40);
         .fs(14);
@@ -81,11 +82,11 @@
         }
       }
       .message{
-        .fs(14);
+        .fs(12);
         color:@headBgColor;
         border: 1px solid @headBgColor;
         padding: 5px;
-        margin-top: 10px;
+        margin-top: 15px;
         border-radius: 5px;
         &.disabled{
           color: @lineColor;

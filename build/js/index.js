@@ -121,6 +121,9 @@ angular.module('app').controller('companyCtrl',['$http','$state','$scope',functi
 }]);
 'use strict';
 angular.module('app').controller('favoriteCtrl', ['$http', '$scope', function($http, $scope){
+	$http.get('data/myfavorite.json').success(function(resp){
+		$scope.list=resp;
+	});
 }]);
 'use strict';
 angular.module('app').controller('loginCtrl', ['cache','$state','$http', '$scope', function(cache,$state,$http, $scope){
@@ -143,19 +146,31 @@ angular.module('app').controller('mainCtrl', ['$http', '$scope', function($http,
 	});
 }]);
 'use strict';
-angular.module('app').controller('meCtrl', ['$http', '$scope', function($http, $scope){
-
+angular.module('app').controller('meCtrl', ['$state','cache','$http', '$scope', function($state,cache,$http, $scope){
+	if(cache.get('name')){
+		$scope.name=cache.get('name');
+		$scope.image=cache.get('image');
+	}
+	$scope.logout=function(){
+	cache.remove('id');
+	cache.remove('name');
+	cache.remove('image');
+	$state.go('main');
+	}
 }]);
 'use strict';
-angular.module('app').controller('positionCtrl',['$q','$http','$state','$scope','cache',function($q,$http,$state,$scope,cache){
-		cache.remove('to','today');
+angular.module('app').controller('positionCtrl',['$log','$q','$http','$state','$scope','cache',function($log,$q,$http,$state,$scope,cache){
 		/*cache方法取出*/
-		$scope.isLogin=false;
+		$scope.isLogin=!!cache.get('name');
+		$scope.message=$scope.isLogin?'投个简历':'去登录';
 		function getPosition(){
 			var def=$q.defer();
 			/*解决异步请求,调用$q的defer的函数,创建一个延迟加载对象*/
-			$http.get('/data/position.json?id='+$state.params.id).success(function(resp){
+			$http.get('/data/position.json?id=',{params:{id:$state.params.id}}).success(function(resp){
 				$scope.position=resp;
+					if(resp.posted){
+						$scope.message='已投递';
+					}
 					def.resolve(resp);  /*异步请求完成的时候,接受数据*/
 			}).error(function(err){
 				def.reject(err);      /*执行失败*/
@@ -170,6 +185,21 @@ angular.module('app').controller('positionCtrl',['$q','$http','$state','$scope',
 		getPosition().then(function(obj){
 			getCompany(obj.companyId); /*这里的异步请求then是函数执行完之后里面两个函数,一个是异常情况下参数就是resolve中的参数*/
 			});
+		$scope.go=function(){
+			if($scope.message!=='已投递'){
+				if($scope.isLogin){
+					$http.post('data/handle.json',{
+						id:$scope.position.id
+					}).success(function(resp){
+						$log.info(resp);
+						$scope.message='已投递'
+					});
+				}else{
+					$state.go('login');
+				}
+			}
+
+		};
 		/*$q.all([fun1(),fun2()]),then(function(result){})*/
 		/*$interval(function(){
 
@@ -187,7 +217,25 @@ angular.module('app').controller('postCtrl', ['$http', '$scope', function($http,
 		},{
 			id:'fail',
 			name:'不合适'
-		}]
+		}];
+	$http.get('data/myPost.json').success(function(res){
+		$scope.positionList=res;
+	});
+	/*这里生命过滤的对象*/
+	$scope.filterObj={};
+	$scope.tClick=function(id,name){
+		switch (id){
+			case 'all':
+				delete $scope.filterObj.state;
+				break;
+			case 'fail':
+				$scope.filterObj.state='-1';
+				break;
+			case 'pass':
+				$scope.filterObj.state='1';
+				break;
+		}
+	}
 }]);
 'use strict';
 angular.module('app').controller('registerCtrl', ['$interval','$http', '$scope','$state', function($interval,$http, $scope,$state){
@@ -294,11 +342,14 @@ angular.module('app').directive('appFoot',[function(){
 }]);
 
 'use strict';
-angular.module('app').directive('appHead',[function(){
+angular.module('app').directive('appHead',['cache',function(cache){
 	return {
 		restrict:'A',
 		replace:'true',
-		templateUrl:'view/template/head.html'
+		templateUrl:'view/template/head.html',
+		link:function($scope){
+			$scope.name=cache.get('name');
+		}
 	}
 }]);
 
@@ -341,7 +392,7 @@ angular.module('app').directive('appPositionClass',[function(){
 	}
 }]);
 "use strict";
-angular.module('app').directive('appPositionInfo',[function(){
+angular.module('app').directive('appPositionInfo',['$http',function($http){
 	return {
 		restrict:'A',
 		replace:true,
@@ -352,20 +403,45 @@ angular.module('app').directive('appPositionInfo',[function(){
 			pos:'='
 		},
 		link:function($scope){
-			$scope.imagePath=$scope.isActive?'image/star-active.png':'image/star.png'
+			$scope.$watch('pos',function(newVal){
+				if(newVal){
+					$scope.pos.select=$scope.pos.select|| false;
+					$scope.imagePath=$scope.pos.select?'image/star-active.png':'image/star.png';
+				}
+			});
+			$scope.favorite=function(){
+				$http.post('data/favorite.json',{
+					id:$scope.pos.id,
+					select: !$scope.pos.select
+				}).success(function(resp){
+					$scope.pos.selct=!$scope.pos.select;
+					$scope.imagePath=$scope.pos.select?'image/star-active.png':'image/star.png';
+				})
+			}
 		}
 	};
 }]);
 
 "use strict";
-angular.module('app').directive('appPositionList',[function(){
+angular.module('app').directive('appPositionList',['$http',function($http){
 	return {
 		restrict:'A',  /*EAMC*/
 		replace:true,   /*替换父元素进行修改*/
 		templateUrl:'view/template/positionList.html',
 		scope: {
 			data:'=',
-			filterObj:'='
+			filterObj:'=',
+			isFavorite:'='
+		},
+		link:function($scope){
+			/*$scope.name=cache.get('name') || '';  */
+			$scope.select=function(item){
+				$http.post('data/favorite.json',{
+					id:item.id,
+					select: !item.select
+				});
+				item.select=!item.select;
+			}
 		}
 	};
 }]);

@@ -187,8 +187,38 @@ batarang(调试插件)
     			return !!value;
     		}
     校验:这里的值不能为空;
-
-	
+		|| 默认值的意识
+		item.select=!item.select;(反选)
+		取相反的属性,点击和取消
+		
+		ng-click="$event.stopPropagation();select(item)"
+		跳转取消冒泡;
+		$scope.isLogin=!!cache.get('name');强行转换玻尔值;
+		页面跳转:ui-sref:"login";
+		login:路由地址login;
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 	
 	

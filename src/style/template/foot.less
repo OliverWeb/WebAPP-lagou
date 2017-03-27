@@ -1,0 +1,38 @@
+.foot{
+  border-top: 1px solid @lineColor;
+  padding:0;
+  margin: 0;
+  position:fixed;
+  bottom: 0;
+  font-size:0;/*将li之间距离取消*/
+  .lh(40);
+  .h(40);
+  .l(0);
+  .r(0);
+  color: @defalutColor;
+
+  li{
+    width:33.33%;
+    font-size: 20px;
+    color: @muteColor;
+    &.select{
+    color:@highlightColor;
+    background-color: @highlightBgColor;
+    }
+  }
+  .icon-document{
+    background-image: url(../image/document.png);
+    width:25px;
+    height:21px;
+  }
+  .icon-search{
+    background-image: url(../image/search.png);
+    width:24px;
+    height:24px;
+  }
+  .icon-my{
+    background-image: url(../image/my.png);
+    width:25px;
+    height:21px;
+  }
+}

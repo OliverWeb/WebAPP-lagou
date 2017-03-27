@@ -1,0 +1,69 @@
+.login{
+  /*铺满真个屏幕而且自适应*/
+  background: url(../image/background.png) no-repeat;
+  background-size: 100% 100%;
+  position: fixed;
+  left: 0;
+  right:0;
+  top: 0;
+  bottom: 0;
+  form{
+    .mt(260);
+    .form-inline{
+      box-sizing:content-box; 
+      margin-left: auto;
+      margin-right: auto;
+      background-color: @formBgColor;
+      font-size: 0;
+      .w(300);
+      .h(40);
+      .lh(40);
+      color: @defalutColor;
+      &:first-child{
+        border-bottom: 1px solid @defalutColor;
+      }
+      span{
+        width: 55px;
+        height:100%;
+      }
+      .account{
+        background:@iconBgColor  url(../image/account.png) no-repeat 20px 10px;
+      }
+       .lock{
+         background:@iconBgColor url(../image/lock.png) no-repeat 20px 10px;
+         
+       }
+      input{
+        border-width: 0;
+        background-color: @formBgColor;
+        outline-width: 0;
+        color: @defalutColor;
+        font-size: 14px;
+        box-sizing:border-box;
+        height: 100%;
+        .w(245);
+        .pl(30);
+        &::-webkit-input-placeholder{
+          color: @defalutColor;
+        }
+      }
+    }
+    button{
+      .w(300);
+      .h(35);
+      font-size: 22px;
+      font-weight: bold;
+      &.login-btn{
+        background-color: @headBgColor;
+        color:@defalutColor;
+        margin-top: 40px;
+      }
+      &.register-btn{
+        background-color: @btnBgColor;
+        margin-top: 20px;
+        color: @headBgColor;
+        border: 1px solid @headBgColor;
+      }
+    }
+  }
+}

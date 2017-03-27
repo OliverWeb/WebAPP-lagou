@@ -1,0 +1,537 @@
+/*颜色变量*/
+/*头部*/
+.head {
+  background-color: #01AEBC;
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  padding: 0 7px;
+  /*按钮*/
+}
+.head .text {
+  color: #fff;
+}
+.head .custom {
+  border-color: #FFAB08;
+  border-style: dashed;
+  background-color: #FFAB08;
+  margin-top: 0.21333333rem;
+  padding-right: 0.4rem;
+  padding-left: 0.4rem;
+}
+.head .back-btn {
+  font-size: 0.53333333rem;
+  width: 0.5rem;
+  left: 0;
+}
+.foot {
+  border-top: 1px solid #d4d4d4;
+  padding: 0;
+  margin: 0;
+  position: fixed;
+  bottom: 0;
+  font-size: 0;
+  /*将li之间距离取消*/
+  line-height: 1.06666667rem;
+  height: 1.06666667rem;
+  left: 0;
+  right: 0;
+  color: #fff;
+}
+.foot li {
+  width: 33.33%;
+  font-size: 20px;
+  color: #9f9e9d;
+}
+.foot li.select {
+  color: #01c2a3;
+  background-color: #dbf9f4;
+}
+.foot .icon-document {
+  background-image: url(../image/document.png);
+  width: 25px;
+  height: 21px;
+}
+.foot .icon-search {
+  background-image: url(../image/search.png);
+  width: 24px;
+  height: 24px;
+}
+.foot .icon-my {
+  background-image: url(../image/my.png);
+  width: 25px;
+  height: 21px;
+}
+.position-list {
+  margin: 0;
+  padding: 0;
+}
+.position-list .item {
+  margin: 0;
+  padding: 7px 3px;
+  list-style: none;
+  border: 1px solid #ddd;
+}
+.position-list .item .logo {
+  width: 1.73333333rem;
+  height: 1.73333333rem;
+  margin-right: 13px;
+}
+.position-list .item .title {
+  margin: 0;
+}
+.position-list .item .text {
+  margin: 0;
+}
+.position-info {
+  border-bottom: 1px solid #ccc;
+  padding: 26px 10px 18px;
+}
+.position-info .ml {
+  margin-left: 20px;
+}
+.position-info img {
+  right: 24px;
+  top: 40px;
+}
+.company-info {
+  padding: 20px 15px 1px 85px;
+}
+.company-info img {
+  width: 1.6rem;
+  height: 1.6rem;
+  left: 15px;
+}
+.company-info p {
+  margin-top: 0;
+}
+.position-class {
+  background-color: #fff;
+  border-top: 1px solid #d4d4d4;
+  padding: 13px 9px;
+}
+.position-class h5 {
+  margin: 0 0 35px 0;
+}
+.position-class button {
+  background-color: #def8f5;
+  padding: 10px 23px;
+  border-radius: 20px;
+  margin-right: 11px;
+  outline: 0;
+}
+.position-class button.active {
+  background-color: #01AEBC;
+  color: #fff;
+}
+.position-class ul {
+  border-top: 1px solid #d4d4d4;
+  margin: 5px 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+.position-class li span {
+  top: 15px;
+  right: 20px;
+}
+/*面向属性的写法*/
+.bg-w {
+  background-color: #fff;
+}
+/*字体颜色*/
+.c-r {
+  color: red;
+}
+.c-w {
+  color: #fff;
+}
+.f-l {
+  float: left;
+}
+.f-r {
+  float: right;
+}
+.clear:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+/*定位*/
+.p-r {
+  position: relative;
+}
+.p-a {
+  position: absolute;
+}
+/*块级*/
+.d-ib {
+  display: inline-block;
+}
+.d-b {
+  display: block;
+}
+/*水平剧中*/
+.ta-l {
+  text-align: left;
+}
+.ta-r {
+  text-align: right;
+}
+.ta-c {
+  text-align: center;
+}
+/*水平居中*/
+.va-t {
+  vertical-align: top;
+}
+.va-m {
+  vertical-align: middle;
+}
+.va-b {
+  vertical-align: bottom;
+}
+.bottom-btn {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  bottom: 0;
+  height: 1.2rem;
+  background-color: #01AEBC;
+}
+.position-desc {
+  margin-top: 10px;
+}
+.position-desc h5 {
+  font-size: 0.42666667rem;
+  border-bottom: 1px solid #ccc;
+  margin-top: 0;
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  padding-left: 10px;
+}
+.position-desc pre {
+  padding-left: 10px;
+  margin-left: 0 ;
+  padding-bottom: 30px;
+}
+.search-bar {
+  background-color: #01AEBC;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  line-height: 1.06666667rem;
+}
+.search-bar img {
+  transform: scale(0.6);
+}
+.search-bar input {
+  border-radius: 80px;
+  background-color: #eee;
+  outline: 0;
+  padding: 4px 10px;
+}
+.search-bar button {
+  background-color: #01AEBC;
+}
+.search-bar button:first-child {
+  color: #fff;
+}
+.search-bar button:last-child {
+  display: inline-block;
+  width: 80px;
+  height: 30px;
+  background: url(../image/search.png) no-repeat 0 7px;
+  background-size: 15px 15px;
+  padding-left: 15px;
+  margin-left: 10px;
+}
+.search-list {
+  margin-top: 2.13333333rem;
+}
+.tab {
+  background-color: #eee;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  margin-top: 1.06666667rem;
+  list-style: none;
+}
+.tab li {
+  font-size: 0.37333333rem;
+  float: left;
+  width: 33.3%;
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  text-align: center;
+  border-bottom: 2px solid #eee;
+}
+.tab li.active {
+  border-bottom: 2px solid #01AEBC;
+  background-color: #f7f7f7;
+}
+.sheet {
+  font-size: 0.42666667rem;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 99;
+}
+.sheet .wrap {
+  position: fixed;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+}
+.sheet .wrap li,
+.sheet .wrap button {
+  height: 1.33333333rem;
+  line-height: 1.33333333rem;
+  width: 100%;
+  background-color: #fff;
+  color: #1063e5;
+}
+.sheet .wrap ul {
+  border-radius: 5px;
+  margin: 0;
+  padding-left: 0;
+  overflow: hidden;
+  /*列表中的如果多的话,设置圆角不能实现的可以设置max-height的高已经的高度进行实现*/
+}
+.sheet .wrap ul li {
+  list-style: none;
+  border-bottom: 1px solid #d4d4d4;
+}
+.sheet .wrap button {
+  margin-top: 8px;
+  border-radius: 8px;
+}
+.login {
+  /*铺满真个屏幕而且自适应*/
+  background: url(../image/background.png) no-repeat;
+  background-size: 100% 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.login form {
+  margin-top: 6.93333333rem;
+}
+.login form .form-inline {
+  box-sizing: content-box;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 0;
+  width: 8rem;
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  color: #fff;
+}
+.login form .form-inline:first-child {
+  border-bottom: 1px solid #fff;
+}
+.login form .form-inline span {
+  width: 55px;
+  height: 100%;
+}
+.login form .form-inline .account {
+  background: rgba(0, 0, 0, 0.4) url(../image/account.png) no-repeat 20px 10px;
+}
+.login form .form-inline .lock {
+  background: rgba(0, 0, 0, 0.4) url(../image/lock.png) no-repeat 20px 10px;
+}
+.login form .form-inline input {
+  border-width: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  outline-width: 0;
+  color: #fff;
+  font-size: 14px;
+  box-sizing: border-box;
+  height: 100%;
+  width: 6.53333333rem;
+  padding-left: 0.8rem;
+}
+.login form .form-inline input::-webkit-input-placeholder {
+  color: #fff;
+}
+.login form button {
+  width: 8rem;
+  height: 0.93333333rem;
+  font-size: 22px;
+  font-weight: bold;
+}
+.login form button.login-btn {
+  background-color: #01AEBC;
+  color: #fff;
+  margin-top: 40px;
+}
+.login form button.register-btn {
+  background-color: rgba(18, 213, 181, 0.3);
+  margin-top: 20px;
+  color: #01AEBC;
+  border: 1px solid #01AEBC;
+}
+.register {
+  /*铺满真个屏幕而且自适应*/
+  background: url(../image/background.png) no-repeat;
+  background-size: 100% 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.register form {
+  margin-top: 1.46666667rem;
+}
+.register form .form-inline {
+  box-sizing: content-box;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 0;
+  width: 8rem;
+  height: 1.06666667rem;
+  line-height: 1.06666667rem;
+  color: #fff;
+}
+.register form .form-inline:first-child {
+  border-bottom: 1px solid #fff;
+}
+.register form .form-inline span.icon {
+  width: 54px;
+  height: 100%;
+}
+.register form .form-inline .account {
+  background: rgba(0, 0, 0, 0.4) url(../image/account.png) no-repeat 20px 10px;
+}
+.register form .form-inline .lock {
+  background: rgba(0, 0, 0, 0.4) url(../image/lock.png) no-repeat 20px 10px;
+}
+.register form .form-inline input {
+  border-width: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  outline-width: 0;
+  color: #fff;
+  font-size: 14px;
+  box-sizing: border-box;
+  height: 100%;
+  width: 6.53333333rem;
+  padding-left: 0.8rem;
+}
+.register form .form-inline input::-webkit-input-placeholder {
+  color: #fff;
+}
+.register form .form-inline input.ng-invalid + span {
+  background-color: transparent;
+  font-size: 14px;
+  color: #FF0000;
+  position: absolute;
+  right: 0;
+  height: 100%;
+  text-align: right;
+}
+.register form .form-inline input.ng-invalid + span p {
+  margin: 0;
+}
+.register form .message-wrap {
+  margin-top: 1.06666667rem;
+  width: 8rem;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+.register form .message-wrap .message-box {
+  border-width: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  outline-width: 0;
+  box-sizing: border-box;
+  width: 5.06666667rem;
+  height: 1.06666667rem;
+  font-size: 0.37333333rem;
+  padding-left: 0.8rem;
+}
+.register form .message-wrap .message-box::-webkit-input-placeholder {
+  color: #fff;
+}
+.register form .message-wrap .message {
+  font-size: 0.37333333rem;
+  color: #01AEBC;
+  border: 1px solid #01AEBC;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+.register form button {
+  width: 8rem;
+  height: 0.93333333rem;
+  font-size: 22px;
+  font-weight: bold;
+}
+.register form button.login-btn {
+  background-color: #01AEBC;
+  color: #fff;
+  margin-top: 60px;
+}
+.register form button.register-btn {
+  background-color: rgba(18, 213, 181, 0.3);
+  margin-top: 20px;
+  color: #01AEBC;
+  border: 1px solid #01AEBC;
+}
+.me img {
+  margin-top: 1.6rem;
+  /* 让元素水平水平剧中*/
+  margin-left: auto;
+  margin-right: auto;
+}
+.me .name {
+  margin-top: 0.66666667rem;
+}
+.me .btn {
+  margin-top: 1.06666667rem;
+}
+.me .btn button {
+  font-size: 0.42666667rem;
+  width: 4rem;
+  height: 2.53333333rem;
+  background-color: #01AEBC;
+  color: #fff;
+  border-radius: 5px;
+  margin-left: 12px;
+  margin-right: 12px;
+}
+.me .btn button.logout {
+  width: 9.06666667rem;
+  height: 1.06666667rem;
+  margin-top: 0.53333333rem;
+  border-radius: 5px;
+  background-color: #FF0000;
+}
+/*声明一个类*/
+/*375分成10分大小*/
+/*外边距*/
+/*内边距*/
+/*定位元素*/
+/*初始化*/
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+button {
+  border: none ;
+}
+body {
+  font-size: 0.42666667rem;
+  background-color: #eee;
+}

@@ -1,0 +1,39 @@
+.sheet{
+  .fs(16);
+  position: fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  top:0;
+  background-color:rgba(0,0,0,.2);
+  z-index:99;
+  .wrap{
+    position:fixed;
+    left:8px;
+    right:8px;
+    bottom:8px;
+    li,button{
+      .h(50);
+      .lh(50);
+      width:100%;
+      background-color:@sheetBgColor;
+      color:@sheetColor;
+    }
+    ul{
+      border-radius: 5px;
+      margin: 0;
+      padding-left:0;
+
+      overflow: hidden; /*列表中的如果多的话,设置圆角不能实现的可以设置max-height的高已经的高度进行实现*/
+      li{
+        list-style:none;
+        border-bottom: 1px solid @lineColor;
+      }
+
+    }
+    button{
+      margin-top:8px;
+      border-radius: 8px;
+    }
+  }
+}

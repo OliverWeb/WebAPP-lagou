@@ -1,0 +1,33 @@
+.me{
+  img{
+    .mt(60);
+    /* 让元素水平水平剧中*/
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .name{
+    .mt(25);
+  }
+  .btn{
+    .mt(40);
+    button{
+      .fs(16);
+      .w(150);
+      .h(95);
+      background-color: @headBgColor;
+      color: @defalutColor;
+      border-radius: 5px;
+      margin-left: 12px;
+      margin-right: 12px;
+
+      &.logout{
+        .w(340);
+        .h(40);
+        .mt(20);
+        border-radius: 5px;
+        background-color: @dangerBgColor;
+      }
+    }
+
+  }
+}

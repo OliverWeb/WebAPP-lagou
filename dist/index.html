@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+	<title>拉钩</title>
+	<link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+<div ui-view></div>
+<script type="text/javascript">
+	document.getElementsByTagName('html')[0].style.fontSize=window.screen.width/10+"px";
+</script>
+<!--引入文件 这里不是以src中的文件为主的,是build种的-->
+<script src="vendor/angular/angular.min.js" charset="utf-8"></script>
+<script src="vendor/angular-ui-router/release/angular-ui-router.min.js" charset="UTF-8"></script>
+<script src="vendor/angular-cookies/angular-cookies.min.js" charset="UTF-8"></script>
+<script src="vendor/angular-validation/dist/angular-validation.min.js" charset="UTF-8"></script>
+<script src="js/index.js" charset="UTF-8"></script>
+</body>
+</html>
+<body></body>

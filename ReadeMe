@@ -1,0 +1,190 @@
+1.单一页面网站SPA,
+2.地步职位列表,底部3个模块,路由管理,内置指令,组件,表单校验,
+3.利用angular和构建工具;搭建环境,
+angular:
+	这些都是组件:
+	module:模块容器,数据,(魔法书)
+	directive:指令,进行绑定,核心(召唤)
+	service:服务公有(攻击性的魔法)
+	injector:
+	依赖注入:
+	模型:
+	filter:数据进行过滤
+	数据绑定:
+	$scope:
+	controller:控制器(辅助),
+	view:视图mv vm,和控制器时时进行数据交换,$scope,这里是进行数据绑定的;
+	
+	
+batarang(调试插件)
+	主要功能:查看作用域对象属性,输出调试信息,性能监控;$scope数据第三方依赖
+安装:
+	 1.node.js
+   2. npm i -g cnpm
+  第三方依赖:拉取我们用到的框架
+  命令:
+  bower init(初始化)
+  bower install
+  bower uninstall
+  bowerrc (安装目录,调整目录)
+  bower.json(管理第三方依赖)
+  git init:git 初始化,在主分支进行开发
+  npm i -g bower
+  bower init(初始化);
+  bower install --save angular(安装angular,配置文件,拉取版本);(pc端的话,#1.2) 版本1.2
+  
+  创建空的.bowerrc(null>.bowerrc)
+  {
+    "directory":"lib"
+  }
+  指定目录;
+  bower install--save angularjs;
+  在lib下安装angularjs;
+  (用不到 li .bowerrc删除)
+  
+  
+  单页面应用:
+    页面跳转不刷新--利用路由控制单一'页面'跳转;js控制路由url的hash值;
+    监控url的hash值惊醒跳转,而整个页面是不跳转的
+    有点:页面切换流畅,不是对整个,而是对某个Dom进行切换;
+        完全前后端分离,路由和模板放在浏览器来控制,和后端交互只有数据
+        
+   源码合并,压缩,减少http的请求,
+   压缩就节省?
+   gulp
+    基于流,产生中间文件放在内纯中快熟,
+    编辑一个个任务,可读性好;
+   常用api: src(读取文件和问价夹) dest(生成文件) watch(监控) task(定制任务) pipe(流)
+   
+   
+   
+    切换目录:
+    全局安装gulp npm install -g gulp;
+              (安装node.js 模块)
+    初始化npm init;(page.json)
+    npm install --save-dev gulp(在当安装)
+    别人通过git拿到这个文件package.json,通过npm install进行安装;
+    npm install --save-dev gulp-clean gulp-concat gulp-connect gulp-cssmin gulp-imagemin gulp-less gulp-load-plugins gulp-plumber gulp-uglify
+      npm list 查看当前安装的插件数目
+   var $=require('gulp-load-plugins');可以省略以gulp开头的插件进行引用
+   var app={
+   		srcPath:'src/',原代码
+   		devPath:'build',开发文件
+   		prdPath:'dist'生产,部署
+   };
+   
+   通过bower安装第三方依赖,需要将这些依赖放到开发目录
+   gulp task 名字;
+
+  gulp.task('lib',function(){
+  	gulp.src('bower_components/**/*js')
+  		.pipe(gulp.dest(app.devPath+'vender'))
+  		.pipe(gulp.dest(app.prdPath+'vender'))
+  });
+  调用任务API,回掉函数
+  读取 在进行pipe操作dest(生成)
+  npm install --save-dev gulp-connect;进行打开服务器
+  
+  引入文件不是一src引入的,这里要看目录build,
+  
+  安装路由bower install --save ui-router 路由和(ngRoute)一样,这个更令过
+  
+  angular与jq不同的是angular是双向数据绑定,而jquerys是通过获取dom元素在进行后或者是赋值
+  
+  ng中的数据呈现的形式
+  {{abc}}
+  <div ng-bind="abc"></div>
+  <input type="text" ng-model="abc">
+  页面数据和控制器;
+   ng-bind=,三目运算,表达式
+   
+   数据绑定:自由同步视视图组件和数据间的行为
+    JS:$scope     html:{{}}或ng-route
+   指令:EAMC;目标是dom元素
+			通过HTML标签.属性.样式,或注释,使angular编译器来为指定的Dom元素绑定的特定行为,甚至改变Dom元素和子元素
+			
+    自带的指令:
+    ng-model,ng-bind,ng-click,ng-class(动态g改变样式效果的时候的特别方便className),ng-if,ng-hide,ng-show,ng-repeat,
+     自定义指令:
+      restrict,scope,template,temmplateUrl,
+      link,transclude
+      $first:第一个样式
+      $last:最后一个样式
+
+		replace,true,模板必须有根元素,不能并列
+
+    ng-trnasclude:替换模板
+    Link:实现动态数据绑定;
+       link:function(scope,element,atrr){
+       }
+     指令中scope默认false,直接就是scope,好处不用再写一些指令,坏就是不能进行重复利用了
+     true,先继承控制器,隔离,
+      scope:{
+        aa:'@' 直接接受字符串暴露接口,字符串
+        bb:'=' 变量
+        cc:'&' 回掉函数;
+      }
+    angular.js用1.58版本,新版本的废除了success.error;
+    以及scope中的data,数据呈变量接口问题;
+    回掉hell,发送http请求的时候,再次发送多次就可能造成,造成函数的回掉的函数
+    isActive是判断是否激活,含有active的属性,isActive返回的是下表,$index;
+  controller控制器:视图对应的业务逻辑,为数据模型添加行为和属性,还是为了修改$scope对象.
+  $scope自带的属性:$id(数字),$parent(父级作用域),$root(模块$rootScope);
+  常用函数:
+    $watch,
+    $on用于接收事件的;
+    $broadcast,向下广播事件的,
+    $emit:向上广播事件的;父级
+    $digest:双向数据绑定失败(数据绑定失败的时候的(原生操作dom的时候))
+    (考虑接收的放是不是已经初始化完成了)
+    
+    服务总结:service,factory:
+    常用的服务:
+    $http:发起get请求,post delete,put('url',{数据对象},{配置函数})
+    $q:解决异步问题,比如异步请求嵌套异步请求,回掉函数的问题;异步变同步;
+    $interval:循环
+    $timeout都是延迟服务;
+    $rootScope:scope的祖先
+    $cache;自定义
+    param
+  自定义服务,数据绑定cookie
+   bower install --save angular-cookies
+   npm install --save-dev gulp-plumber(这里只是抛出错误)
+    server和factory的区别的,factory返回的是一个对象;
+    server是
+    
+    filter:用来格式化代码或过滤数据
+    内置:currency/number/data/lowercase/uppercase/limitTo/orderBy
+    自定义:引用
+    调用的时候要加后缀,limitToFilter(数组,对象);
+    将整个图片铺满整个屏幕,切能自适应
+    .login{
+      background: url(../image/background.png) no-repeat;
+      background-size: 100% 100%;
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
+    box-sizing:content-box;  content,不包括padding,border;
+    border-box:包括border,padding;
+    行内元素的font-size:3px;
+    font-size:0;
+    先经块级元素margin居中,然后在进行内部元素 taxt-align:left;
+		让块级元素居中的方式:
+			margin-left:auto;
+      margin-right:auto;
+      (省去margin-left和margin-right);操作;
+      
+    bower install --save angular-validation;
+    (中国开发的用于表单验证的)
+    一些表单常用的校验规则;
+    /^1[\d]{10}/
+    同意挂在一个上面,传数据也非常方便
+  
+
+	
+	
+	
+	
